@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int data;
+struct node* next;
+}*newnode,*t;
+struct node *head[10];
+void create()
+{
+int key,i;
+for(i=0;i<10;i++)
+{
+    head[i]=NULL;
+}
+int j=0;
+do
+{
+newnode=(struct node*)malloc(sizeof(struct node)) ;
+printf("enter value to insert in hash table");
+scanf("%d",&key);
+i=key%10;
+newnode->data=key;
+newnode->next=NULL;
+if(head[i]==NULL)
+{
+head[i]=newnode;
+}
+else
+{
+t=head[i];
+while(t->next!=NULL)
+{
+t=t->next;
+}
+t->next=newnode;
+}
+j=j+1;
+}while(j<10);
+}
+void display()
+{
+int i=0;
+while(i<10)
+{
+t=head[i];
+while(t!=NULL)
+{
+printf("%d\n",t->data);
+t=t->next;
+}
+i=i+1;
+}
+}
+void search()
+{
+    int val,k;
+    printf("enter element to search");
+    scanf("%d",&val);
+    int i=0;
+    k=val%10;
+        t=head[k];
+        while(t!=NULL)
+        {
+            if(t->data==val)
+            {
+                printf("element is found");
+break;
+            }
+            else
+            {
+            t=t->next;
+            }
+}
